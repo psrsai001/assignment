@@ -1,26 +1,17 @@
-import mysql.connector
-
 # Establish a connection
-connection = mysql.connector.connect(
-    host="localhost",  # Host where MySQL is running
-    user="root",  # Your MySQL username
-    password="your_password",  # Your MySQL password
-)
+import mysql.connector
+from mysql.connector import errorcode
 
-# Check if the connection was successful
-if connection.is_connected():
-    print("Successfully connected to MySQL!")
-
-# Create a cursor to execute queries
-cursor = connection.cursor()
-
-# Example: Create a simple query
-cursor.execute("SHOW DATABASES")
-
-# Fetch and print the result
-for db in cursor.fetchall():
-    print(db)
-
-# Clean up: Close the cursor and connection
-cursor.close()
-connection.close()
+try:
+    cnx = mysql.connector.connect(
+        user="root",
+        password="your_password",
+    )
+    print("connection success")
+except mysql.connector.Error as err:
+    if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+        print("Something is wrong with your user name or password")
+    elif err.errno == errorcode.ER_BAD_DB_ERROR:
+        print("Database does not exist")
+    else:
+        print(err)
