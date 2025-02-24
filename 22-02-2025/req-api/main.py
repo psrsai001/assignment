@@ -74,9 +74,16 @@ def delete():
     print_res(res)
 
 
+def headers():
+    headers = {"Authorization": "Bearer <auth_token>"}
+    res = req.get(get_url, headers=headers)
+    print_res(res)
+
+
 # get()
 # get_params({"userId": 2})
 # post()
 # put()
 # patch()
-delete()
+# delete()
+headers()
