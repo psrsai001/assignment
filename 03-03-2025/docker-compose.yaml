@@ -1,0 +1,22 @@
+services:
+  random_number_service:
+    build:
+      ./serv1
+    ports:
+      - "3000:3000"
+    networks:
+      - flask_network
+  
+  consumer_service:
+    build:
+      ./serv2
+    ports:
+      - "3001:3001"
+    environment:
+      - SERVICE_URL=random_number_service
+      - PORT=3000
+    networks:
+      - flask_network
+networks:
+  flask_network:
+    driver: bridge
