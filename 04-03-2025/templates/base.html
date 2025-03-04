@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Authenticaton App{% endblock %}</title>
+  </head>
+  <body>
+    <nav><h3>Authenticaton App</h3>
+      {% for item in ['odd', 'even'] %}
+      <a href="{{ url_for(item) }}"> {{ item }} </a>
+      {% endfor %}
+    </nav>
+    {% block body %}Empty body {% endblock %}
+  </body>
+</html>

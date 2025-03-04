@@ -14,7 +14,7 @@ def get_db():
     return g.db
 
 
-def close_db(e=None):
+def close_db():
     db = g.pop("db", None)
     if db is not None:
         db.close()
@@ -33,7 +33,10 @@ def init_db_command():
     click.echo("Initilized the database")
 
 
-sqlite3.register_converter("timestamp", lambda v: datetime.fromisoformat(v.decode()))
+sqlite3.register_converter(
+    "timestamp",
+    lambda v: datetime.fromisoformat(v.decode()),
+)
 
 
 def init_app(app):

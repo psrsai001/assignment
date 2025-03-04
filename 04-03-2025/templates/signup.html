@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+  {% block title %} Signup Page {% endblock %} 
+  {% block body %} 
+   
+    <form method="POST" action="{{ url_for('signup') }}" >
+      <label for="email">Email:</label><br />
+      <input
+        id="email"
+        type="text"
+        name="email"
+        placeholder="jhon.wick@gmail.com"
+      /><br />
+
+      <label for="password">Password:</label><br />
+      <input
+        id="password"
+        type="password"
+        name="password"
+        placeholder="************"
+      /><br />
+      <input type="submit" value="Sign Up" />
+    </form>
+  {% endblock %}
