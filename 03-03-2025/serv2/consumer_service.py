@@ -1,9 +1,14 @@
+import os
+
 import requests
 from flask import Flask
 
+URL = os.getenv("URL", "127.0.0.1")
+PORT = os.getenv("PORT", "3000")
+
 
 def get_rand_int():
-    res = requests.get("http://127.0.0.1:3000/number")
+    res = requests.get(f"http://{URL}:{PORT}/number")
     data: dict[str, int] = res.json()
     rand_num = data.get("number", None)
     return rand_num
